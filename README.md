@@ -11,4 +11,4 @@ For the in-game interface, we will use a static background and move it in a loop
 ## Planning
 #### Wireframes
 
-[wireframe1](images/Project2_Wireframe1.png)
+![wireframe1](images/Project2_Wireframe1.png)
