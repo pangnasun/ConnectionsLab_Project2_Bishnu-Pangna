@@ -9,7 +9,7 @@ For the in-game interface, we will use a static background and move it in a loop
 
 
 ## Planning
-#### Wireframes
+#### 1. Wireframes
 
 *Homepage*
 ![wireframe1](images/Project2_Wireframe1.png)
@@ -19,3 +19,7 @@ For the in-game interface, we will use a static background and move it in a loop
 
 *Afer Join Room*
 ![wireframe3](images/Project2_Wireframe3.png)
+
+#### 2. Data Flow Diagram
+
+![data_flow](images/DataFlow_Project2.png)
