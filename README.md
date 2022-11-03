@@ -14,10 +14,10 @@ For the in-game interface, we will use a static background and move it in a loop
 *Homepage*
 ![wireframe1](images/Project2_Wireframe1.png)
 
-*Afer Create Room*
+*After Create Room*
 ![wireframe2](images/Project2_Wireframe2.png)
 
-*Afer Join Room*
+*After Join Room*
 ![wireframe3](images/Project2_Wireframe3.png)
 
 #### 2. Data Flow Diagram
