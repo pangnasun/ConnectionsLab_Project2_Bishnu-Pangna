@@ -13,9 +13,9 @@ class GameChannel {
     }
 
     // Start game
-    startGame() {
+    startGame(gameID) {
         socket.emit("game-start", {
-            gameID: this.gameID,
+            gameID: gameID,
         });
     }
 }

@@ -4,6 +4,8 @@ let gameIdInput, playerNameInput;
 const gameChannel = new GameChannel();
 let game;
 
+let playerName, gameId;
+
 window.onload = function () {
     root = document.getElementById("root");
     gameInit = document.getElementById("game-init");
@@ -24,6 +26,14 @@ window.onload = function () {
 
     // Listen to join game button click
     joinGameBtn.addEventListener("click", () => {
+        playerName = playerNameInput.value;
+        gameId = gameIdInput.value;
+
+        // Check if playerName or gameId is empty
+        if (playerName === "" || gameId === "") {
+            alert("Please enter your name and game ID");
+            return;
+        }
         gameChannel.joinGame(gameIdInput.value, playerNameInput.value);
     });
 
@@ -34,17 +44,18 @@ window.onload = function () {
     hookEventHandler("player-join", (data) => {
         console.log("Player added to game");
         console.log(data);
-        if (game){
+        if (game) {
             // remove p5 instance
             game.p5Instance.remove();
         }
-        game = new Game(data);
+        game = new Game(gameChannel, gameId);
         game.players = data.players;
         GamePlayScreen();
     });
     hookEventHandler("game-start", (data) => {
         console.log("Game started");
         console.log(data);
+        game.startGame();
     });
 
     // Error handling
