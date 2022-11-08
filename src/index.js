@@ -92,8 +92,12 @@ io.on("connection", (socket) => {
     });
 
     // Listen to player reach finish event
-    socket.on("player-reach-finish", (data) => {
+    socket.on("player-reach-finish", async (data) => {
         let gameID = data.gameID;
+
+        let game = await Game.getGame(gameID);
+        game.registerPlayerFinish(socket.id);
+        await game.save();
 
         // Emit to all player of this game
         io.to(gameID).emit("player-reach-finish", data);
