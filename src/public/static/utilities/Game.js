@@ -4,9 +4,12 @@ class Game {
         this.windowHeight = window.innerHeight;
         this.windowWidth = window.innerWidth;
 
+        this.players = [];
+
         // Waiting screen buttons
         this.startButton;
         this.waitingButton;
+        this.readyButton;
 
         this.s = (sketch) => {
             let windowHeight = window.innerHeight;
@@ -46,11 +49,26 @@ class Game {
         sketch.background(0);
         sketch.fill(255);
 
-        this.waitingButton.draw();
+        if (this.players.length == 2) {
+            this.readyButton.draw();
+        } else {
+            this.waitingButton.draw();
+        }
         this.startButton.draw();
     }
 
     initWaitingScreen(sketch) {
+        this.readyButton = new Button(
+            sketch,
+            this.windowWidth / 2,
+            this.windowHeight / 2,
+            200,
+            100,
+            "Ready!",
+            "#FFFFFF",
+            "#000000"
+        );
+
         this.waitingButton = new Button(
             sketch,
             this.windowWidth / 2,

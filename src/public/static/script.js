@@ -34,7 +34,12 @@ window.onload = function () {
     hookEventHandler("player-join", (data) => {
         console.log("Player added to game");
         console.log(data);
+        if (game){
+            // remove p5 instance
+            game.p5Instance.remove();
+        }
         game = new Game(data);
+        game.players = data.players;
         GamePlayScreen();
     });
     hookEventHandler("game-start", (data) => {
