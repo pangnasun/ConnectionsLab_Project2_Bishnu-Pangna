@@ -47,7 +47,14 @@ class Game {
         });
     }
 
-    addPlayer(player) {
+    addPlayer(playerName, socketID) {
+        let player = {
+            socketID: socketID,
+            playerName: playerName,
+            finished: false,
+            finishedAt: null,
+        };
+
         // Check number of players
         if (this.players.length >= 2) {
             throw "Game is full";
@@ -73,7 +80,36 @@ class Game {
         }
 
         this.state = "started";
-        this.startedAt = + new Date();
+        this.startedAt = +new Date();
+    }
+
+    registerPlayerFinish(socketID) {
+        // Check if both players have finished
+        if (this.players.filter((player) => player.finished).length == 2) {
+            throw "Game has already finished";
+        }
+
+        // Check game state
+        if (this.state != "started") {
+            throw "Game has not started yet";
+        }
+
+        // Find player
+        let player = this.players.find((player) => player.socketID == socketID);
+
+        // Check if player exists
+        if (!player) {
+            throw "Player does not exist";
+        }
+
+        // Check if player has already finished
+        if (player.finished) {
+            throw "Player has already finished";
+        }
+
+        // Register player finish
+        player.finished = true;
+        player.finishedAt = +new Date();
     }
 
     save() {
@@ -97,6 +133,5 @@ class Game {
         });
     }
 }
-
 
 export default Game;

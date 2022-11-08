@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
 
         try {
             let game = await Game.getGame(gameID);
-            game.addPlayer(player);
+            game.addPlayer(player.playerName, player.socketID);
             await game.save();
 
             // Add player to the room
